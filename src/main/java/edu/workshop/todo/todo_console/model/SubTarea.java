@@ -1,11 +1,23 @@
-package edu.workshop.todo.ToDo_maven.domain;
+package edu.workshop.todo.todo_console.model;
 
 import java.time.LocalDateTime;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "subtareas")
 public class SubTarea {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String nombre;
+
+    @Enumerated(EnumType.STRING)
     private Estado estado;
     private LocalDateTime fechaDeCreacion;
+
+    public SubTarea() {
+    }
 
     /**
      * Constructor
