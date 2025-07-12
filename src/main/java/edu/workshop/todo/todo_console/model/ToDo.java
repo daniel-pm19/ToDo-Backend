@@ -1,36 +1,28 @@
-package edu.workshop.todo.todo_console.domain;
+package edu.workshop.todo.todo_console.service;
 
 import java.util.ArrayList;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Table(name = "todo")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ToDo {
+    @Id
+    private long id;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "ToDo_id")
     private ArrayList<Usuario> usuarios;
+
+    @Column(nullable = false)
+    @NotBlank(message = "Name cannot be blank")
     private Usuario usuarioActual;
-
-    public ToDo() {
-        usuarios = new ArrayList<>();
-        usuarioActual = null;
-    }
-
-    public void registrarUsuario(String nombre, String email, String password) {
-        usuarios.add(new Usuario(nombre, email, password));
-    }
-
-    public boolean iniciarSesion(String nombre, String contraseña) {
-        for (Usuario u : usuarios) {
-            if (u.getNombre().equals(nombre) && u.getContraseña().equals(contraseña)) {
-                usuarioActual = u;
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void CerrarSesion() throws ToDoException {
-        if (usuarioActual != null) {
-            usuarioActual = null;
-        } else {
-            throw new ToDoException(ToDoException.USUARIO_NO_EXISTE);
-        }
-    }
-
 }

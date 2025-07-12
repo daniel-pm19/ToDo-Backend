@@ -1,20 +1,17 @@
-package edu.workshop.todo.ToDo_maven.domain;
+package edu.workshop.todo.todo_console.service.impl;
 
 import java.util.Properties;
 
-import jakarta.mail.Authenticator;
-import jakarta.mail.Message;
-import jakarta.mail.MessagingException;
-import jakarta.mail.PasswordAuthentication;
-import jakarta.mail.Session;
-import jakarta.mail.Transport;
-import jakarta.mail.internet.InternetAddress;
-import jakarta.mail.internet.MimeMessage;
+import edu.workshop.todo.todo_console.model.Notificacion;
+import edu.workshop.todo.todo_console.service.NotificationService;
+import edu.workshop.todo.todo_console.model.*;
+import jakarta.mail.*;
+import jakarta.mail.internet.*;
 
-public class ServicioDeNotificaciones {
+public class ServicioDeNotificacionesImpl implements NotificationService {
 
-    public void enviarNotificacion(Notificacion notificacion, Usuario usuario) {
-        usuario.agregarNotificacion(notificacion);
+    public void enviarNotificacion(Notificacion notificacion, Usuarios usuario) {
+        // usuario.agregarNotificacion(notificacion); IMPLEMENTAR SERVICIO
         String host = "smtp.gmail.com";
         String from = "todoapplicationproject@gmail.com";
         String password = "fmffxdaokensoshj";
@@ -28,9 +25,9 @@ public class ServicioDeNotificaciones {
 
         Session session = Session.getInstance(props, new Authenticator() {
 
-        @Override    
-        protected PasswordAuthentication getPasswordAuthentication() {
-            return new PasswordAuthentication(from, password);
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(from, password);
             }
         });
 

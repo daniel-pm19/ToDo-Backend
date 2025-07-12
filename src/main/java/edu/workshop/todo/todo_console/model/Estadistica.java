@@ -1,28 +1,27 @@
-package edu.workshop.todo.todo_console.domain;
+package edu.workshop.todo.todo_console.model;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Table(name = "estadisticas")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 
 public class Estadistica {
+    @Id
+    @Column
+    @NotBlank
+    private Long id;
+    @Column
+    @NotBlank(message = "las tareas no pueden ser nulas")
     private int tareas;
+
+    @Column
+    @NotBlank(message = "tareas finalizadas no pueden ser nulas")
     private int tareasFinalizadas;
-
-    public Estadistica(int newTareas, int newTareasFinalizadas) {
-        tareas = newTareas;
-        tareasFinalizadas = newTareasFinalizadas;
-    }
-
-    public double generarEstadistica() {
-        return tareasFinalizadas / tareas;
-    }
-
-    public void plusTareas() {
-        tareas++;
-    }
-
-    public void plusTareasFinalizadas() {
-        tareasFinalizadas++;
-    }
-    // Inicialmente hay 0 - 0, con el paso del tiempo las tareas van a aumentar?
-
-    public String mostrarEstadistica() {
-        return String.valueOf(generarEstadistica()) + "%";
-    }
 }
