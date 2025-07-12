@@ -1,46 +1,31 @@
 package edu.workshop.todo.todo_console.model;
 
+import edu.workshop.todo.todo_console.model.enums.*;
 import java.time.LocalDateTime;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "subtareas")
 public class SubTarea {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    @NotBlank(message = "ID cannot be blank")
     private Long id;
 
+    @Column
+    @NotBlank(message = "NOMBRE cannot be blank")
+    @NotNull
+    @Size(max = 20, message = "No puede exceder los 20 caracteres")
     private String nombre;
 
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Estado estado;
+
+    @Column
+    @NotNull(message = "La fecha No puede ser nula")
+    @Past
     private LocalDateTime fechaDeCreacion;
-
-    public SubTarea() {
-    }
-
-    /**
-     * Constructor
-     */
-    public SubTarea(String nuevoNombre, Estado nuevoEstado, LocalDateTime nuevaFechaDeCreacion) {
-        nombre = nuevoNombre;
-        estado = nuevoEstado;
-        fechaDeCreacion = nuevaFechaDeCreacion;
-    }
-
-    /**
-     * Modifica la SubTarea
-     * 
-     * @param nombre Nuevo Nombre.ArrayList
-     * @param estado Nuevo estado de la tarea.
-     */
-    public void modificarSubTarea(String newNombre, Estado newEstado) {
-        nombre = newNombre;
-        estado = newEstado;
-    }
-
-    public void modificarEstado(Estado newEstado) {
-        estado = newEstado;
-    }
 
 }

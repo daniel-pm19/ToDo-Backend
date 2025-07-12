@@ -10,6 +10,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "grupodelistas")
@@ -19,9 +20,16 @@ import lombok.NoArgsConstructor;
 public class GrupoDeLista {
 
     @Id
+    @NotBlank(message = "ID cannot be blank")
+    @Column
     private Long id;
 
+    @Column
+    @NotBlank
     private String nombre;
+
+    @PastOrPresent
+    @Column
     private LocalDate fechaDeCreacion;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

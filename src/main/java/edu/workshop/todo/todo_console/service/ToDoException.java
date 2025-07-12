@@ -1,4 +1,4 @@
-package edu.workshop.todo.todo_console.domain;
+package edu.workshop.todo.todo_console.service;
 
 public class ToDoException extends Exception {
 
