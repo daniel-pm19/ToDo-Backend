@@ -1,4 +1,4 @@
-package edu.workshop.todo.ToDo_maven.domain;
+package edu.workshop.todo.todo_console.domain;
 
 public class Estadistica {
     private int tareas;

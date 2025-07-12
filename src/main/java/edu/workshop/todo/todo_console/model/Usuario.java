@@ -1,33 +1,49 @@
-package edu.workshop.todo.ToDo_maven.domain;
+package edu.workshop.todo.todo_console.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import java.util.List;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "usuarios")
 public class Usuario {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
-
     private String correoElectronico;
     private String contraseña;
     private String nombre;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "estadistica_id")
     private Estadistica estadistica;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "pomodoro_id")
     private TemporizadorPomodoro pomodoro;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "historial_id")
     private Historial historial;
-    private ArrayList<Notificacion> notificaciones;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "usuario_id")
+    private List<Notificacion> notificaciones;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "calendario_id")
     private Calendario calendario;
-    private ArrayList<GrupoDeLista> grupoDeListas;
-    private ArrayList<ListaDeTarea> listaDeTareas;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "usuario_id")
+    private List<GrupoDeLista> grupoDeListas;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true) // añadir fks
+    @JoinColumn(name = "usuario_id") // se refiere a la clave forannea en la tabla de lista de tareas
+    private List<ListaDeTarea> listaDeTareas;
 
     public Usuario() {
-
     }
 
     public Usuario(String newNombre, String newCorreoElectronico, String newContraseña, Estadistica newEstadistica,
@@ -81,7 +97,7 @@ public class Usuario {
         return correoElectronico;
     }
 
-    public ArrayList<Notificacion> getNotificaciones() {
+    public List<Notificacion> getNotificaciones() {
         return notificaciones;
     }
 
