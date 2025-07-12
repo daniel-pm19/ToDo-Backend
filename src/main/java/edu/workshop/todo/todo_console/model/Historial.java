@@ -7,9 +7,12 @@ import java.util.List;
 import java.util.ArrayList;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "historial")
@@ -18,9 +21,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Historial {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    @NotBlank(message = "ID cannot be blank")
     private Long id;
 
+    @Column
+    @NotNull(message = "La fecha No puede ser nula")
+    @Past
     private LocalDate fechaDeCreacion;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -28,6 +35,7 @@ public class Historial {
     private List<Tarea> tareas;
 
     @Enumerated(EnumType.STRING)
+    @Column
     private TipoHistorial tipoHistorial;
 
 }
