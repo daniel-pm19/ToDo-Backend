@@ -5,11 +5,6 @@ import org.springframework.data.jpa.repository.Query;
 import edu.workshop.todo.todo_console.model.Usuarios;
 import java.util.Optional;
 
-public interface UsuarioRepository extends JpaRepository<Usuarios, String> {
+public interface TareaRepository {
 
-    Optional<Usuarios> findByEmail(String correoElectronico);
-
-    Optional<Usuarios> findByName(String nombre);
-
-    Optional<Usuarios> findById(Long id);
 }

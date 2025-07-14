@@ -10,6 +10,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.Builder;
 import jakarta.validation.constraints.*;
 
 @Entity
@@ -17,6 +18,7 @@ import jakarta.validation.constraints.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class GrupoDeLista {
 
     @Id

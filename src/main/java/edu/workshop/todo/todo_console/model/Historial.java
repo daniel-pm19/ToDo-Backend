@@ -1,5 +1,6 @@
 package edu.workshop.todo.todo_console.model;
 
+import edu.workshop.todo.todo_console.dto.TareaRequestDTOO;
 import edu.workshop.todo.todo_console.model.enums.TipoHistorial;
 import edu.workshop.todo.todo_console.service.*;
 import java.time.LocalDate;
@@ -11,6 +12,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import lombok.Data;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 import jakarta.validation.constraints.*;
 
@@ -19,6 +21,7 @@ import jakarta.validation.constraints.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Historial {
     @Id
     @Column
