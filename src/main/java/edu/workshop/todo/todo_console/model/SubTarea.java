@@ -4,9 +4,11 @@ import edu.workshop.todo.todo_console.model.enums.*;
 import java.time.LocalDateTime;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import lombok.Builder;
 
 @Entity
 @Table(name = "subtareas")
+@Builder
 public class SubTarea {
     @Id
     @Column
