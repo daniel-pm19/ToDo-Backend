@@ -21,6 +21,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
+@Builder
 public class TareaRequestDTOO {
 
     @Schema(description = "ID único de la tarea", example = "123")

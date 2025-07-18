@@ -15,4 +15,12 @@ public class CalendarioMapper {
                 .build();
     }
 
+    public static CalendarioDTO toDTO(Calendario entity) {
+        return CalendarioDTO.builder()
+                .tareas(entity.getTareas().stream()
+                        .map(TareaMapper::toDTO)
+                        .collect(Collectors.toList()))
+                .build();
+    }
+
 }
