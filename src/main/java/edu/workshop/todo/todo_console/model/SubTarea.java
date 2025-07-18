@@ -5,10 +5,12 @@ import java.time.LocalDateTime;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Builder;
+import lombok.Data;
 
 @Entity
 @Table(name = "subtareas")
 @Builder
+@Data
 public class SubTarea {
     @Id
     @Column

@@ -22,4 +22,21 @@ public class NotificacionMapper {
                 .map(NotificacionMapper::toEntity)
                 .collect(Collectors.toList());
     }
+
+    public static NotificacionDTO toDTO(Notificacion entity) {
+        return NotificacionDTO.builder()
+                .fechaDeCreacion(entity.getFechaDeCreacion())
+                .mensaje(entity.getMensaje())
+                .titulo(entity.getTitulo())
+                .build();
+    }
+
+    public static List<NotificacionDTO> toDTOList(List<Notificacion> entityList) {
+        if (entityList == null)
+            return null;
+        return entityList.stream()
+                .map(NotificacionMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
 }

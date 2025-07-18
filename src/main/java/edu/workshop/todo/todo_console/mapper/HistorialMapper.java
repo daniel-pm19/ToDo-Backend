@@ -16,4 +16,15 @@ public class HistorialMapper {
                         .collect(Collectors.toList()))
                 .build();
     }
+
+    public static HistorialDTO toDTO(Historial entity) {
+        return HistorialDTO.builder()
+                .fechaDeCreacion(entity.getFechaDeCreacion())
+                .tipoHistorial(entity.getTipoHistorial())
+                .tareas(entity.getTareas().stream()
+                        .map(TareaMapper::toDTO)
+                        .collect(Collectors.toList()))
+                .build();
+    }
+
 }

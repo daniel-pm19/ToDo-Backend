@@ -25,4 +25,22 @@ public class ListaDeTareaMapper {
                 .collect(Collectors.toList());
     }
 
+    public static ListaDeTareaDTO toDTO(ListaDeTarea entity) {
+        return ListaDeTareaDTO.builder()
+                .nombre(entity.getNombre())
+                .fechaDeCreacion(entity.getFechaDeCreacion())
+                .tareas(entity.getTareas().stream()
+                        .map(TareaMapper::toDTO)
+                        .collect(Collectors.toList()))
+                .build();
+    }
+
+    public static List<ListaDeTareaDTO> toDTOList(List<ListaDeTarea> entityList) {
+        if (entityList == null)
+            return null;
+        return entityList.stream()
+                .map(ListaDeTareaMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
 }

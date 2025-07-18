@@ -11,4 +11,12 @@ public class EstadisticaMapper {
                 .tareasFinalizadas(dto.getTareasFinalizadas())
                 .build();
     }
+
+    public static EstadisticaDTO toDTO(Estadistica entity) {
+        return EstadisticaDTO.builder()
+                .tareas(entity.getTareas())
+                .tareasFinalizadas(entity.getTareasFinalizadas())
+                .build();
+    }
+
 }

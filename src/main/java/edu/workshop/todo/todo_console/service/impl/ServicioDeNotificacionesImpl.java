@@ -2,12 +2,19 @@ package edu.workshop.todo.todo_console.service.impl;
 
 import java.util.Properties;
 
+import org.springframework.stereotype.Service;
+
 import edu.workshop.todo.todo_console.model.Notificacion;
 import edu.workshop.todo.todo_console.service.NotificationService;
 import edu.workshop.todo.todo_console.model.*;
 import jakarta.mail.*;
 import jakarta.mail.internet.*;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Service
+@RequiredArgsConstructor
+@Slf4j
 public class ServicioDeNotificacionesImpl implements NotificationService {
 
     public void enviarNotificacion(Notificacion notificacion, Usuarios usuario) {

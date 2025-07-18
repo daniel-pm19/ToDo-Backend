@@ -26,4 +26,22 @@ public class GrupoDeListaMapper {
                 .collect(Collectors.toList());
     }
 
+    public static GrupoDeListaDTO toDTO(GrupoDeLista entity) {
+        return GrupoDeListaDTO.builder()
+                .nombre(entity.getNombre())
+                .fechaDeCreacion(entity.getFechaDeCreacion())
+                .listaDeTareas(entity.getListasDeTareas().stream()
+                        .map(ListaDeTareaMapper::toDTO)
+                        .collect(Collectors.toList()))
+                .build();
+    }
+
+    public static List<GrupoDeListaDTO> toDTOList(List<GrupoDeLista> entityList) {
+        if (entityList == null)
+            return null;
+        return entityList.stream()
+                .map(GrupoDeListaMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
 }

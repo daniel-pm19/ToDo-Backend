@@ -1,8 +1,5 @@
 package edu.workshop.todo.todo_console.model;
 
-import edu.workshop.todo.todo_console.model.*;
-import edu.workshop.todo.todo_console.service.*;
-import java.util.ArrayList;
 import java.time.LocalDate;
 import java.util.List;
 

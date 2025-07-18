@@ -21,10 +21,10 @@ public class UsuarioResponseDTO {
     private Long id;
     private String correoElectronico;
     private String nombre;
-    private Estadistica estadistica;
-    private Historial historial;
-    private List<Notificacion> notificaciones;
-    private Calendario calendario;
-    private List<GrupoDeLista> grupoDeListas;
-    private List<ListaDeTarea> listaDeTareas;
+    private EstadisticaDTO estadistica;
+    private HistorialDTO historial;
+    private List<NotificacionDTO> notificaciones;
+    private CalendarioDTO calendario;
+    private List<GrupoDeListaDTO> grupoDeListas;
+    private List<ListaDeTareaDTO> listaDeTareas;
 }

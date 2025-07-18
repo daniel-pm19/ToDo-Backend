@@ -3,5 +3,9 @@ package edu.workshop.todo.todo_console.service;
 import edu.workshop.todo.todo_console.dto.*;
 
 public interface TareaService {
-    TareaResponseDTO crearTareaParaUsuario(Long id, TareaRequestDTOO dto);
+    TareaResponseDTO crearTarea(TareaRequestDTOO dto);
+
+    void eliminarTarea(Long id);
+
+    TareaResponseDTO updateTarea(Long id, TareaRequestDTOO dto);
 }
