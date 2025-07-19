@@ -63,5 +63,6 @@ public class Tarea {
     private List<SubTarea> subtareas;
 
     @JoinColumn(name = "tarea_id")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Notificacion> notificaciones;
 }
