@@ -8,12 +8,12 @@ import java.util.List;
 import java.util.ArrayList;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
 import lombok.Data;
+import lombok.Getter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import jakarta.validation.constraints.*;
 
 @Entity

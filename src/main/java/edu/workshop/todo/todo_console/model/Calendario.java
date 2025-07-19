@@ -9,7 +9,9 @@ import edu.workshop.todo.todo_console.model.enums.Estado;
 import edu.workshop.todo.todo_console.model.enums.Prioridad;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.Builder;
 import jakarta.validation.constraints.*;
 import jakarta.persistence.*;
@@ -17,6 +19,8 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "historial")
 @Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

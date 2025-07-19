@@ -5,8 +5,10 @@ import java.util.List;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.Builder;
 import jakarta.validation.constraints.*;
 
@@ -16,6 +18,8 @@ import jakarta.validation.constraints.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Getter
+@Setter
 public class GrupoDeLista {
 
     @Id
