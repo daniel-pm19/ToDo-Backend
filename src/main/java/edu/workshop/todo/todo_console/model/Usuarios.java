@@ -1,5 +1,6 @@
 package edu.workshop.todo.todo_console.model;
 
+import edu.workshop.todo.todo_console.dto.EstadisticaDTO;
 import edu.workshop.todo.todo_console.service.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,12 +14,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import lombok.Data;
+import lombok.Builder;
 
 @Entity
 @Table(name = "usuarios")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Usuarios {
     @Id
     @Column
