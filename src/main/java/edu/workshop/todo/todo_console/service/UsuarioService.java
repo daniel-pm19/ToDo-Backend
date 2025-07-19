@@ -8,5 +8,10 @@ import java.util.List;
 public interface UsuarioService {
     UsuarioResponseDTO crearUsuario(UsuarioRequestDTO dto);
 
-    TareaResponseDTO crearTarea(TareaRequestDTOO dto);
+    UsuarioResponseDTO updateUsuario(Long id, UsuarioRequestDTO dto);
+
+    void eliminarUsuario(Long id);
+
+    UsuarioResponseDTO getUsuarioById(Long id);
+
 }
