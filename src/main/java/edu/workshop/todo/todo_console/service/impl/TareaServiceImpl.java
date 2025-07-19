@@ -94,4 +94,11 @@ public class TareaServiceImpl implements TareaService {
                 .prioridad(tarea.getPrioridad())
                 .build();
     }
+
+    public TareaResponseDTO getTareaById(Long id) {
+        Tarea tarea = tareaRepository.findById(id)
+                .orElseThrow(() -> ResourceNotFoundException.create("Tarea", id));
+
+        return mapToDto(tarea);
+    }
 }

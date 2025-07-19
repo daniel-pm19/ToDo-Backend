@@ -8,4 +8,6 @@ public interface TareaService {
     void eliminarTarea(Long id);
 
     TareaResponseDTO updateTarea(Long id, TareaRequestDTOO dto);
+
+    TareaResponseDTO getTareaById(Long id);
 }

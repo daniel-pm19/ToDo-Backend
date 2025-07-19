@@ -4,19 +4,19 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import edu.workshop.todo.todo_console.dto.TareaRequestDTOO;
-import edu.workshop.todo.todo_console.dto.UsuarioRequestDTO;
 import edu.workshop.todo.todo_console.dto.*;
 import edu.workshop.todo.todo_console.exception.DuplicateResourceException;
+import edu.workshop.todo.todo_console.exception.ResourceNotFoundException;
 import edu.workshop.todo.todo_console.model.Tarea;
 import edu.workshop.todo.todo_console.model.Usuarios;
 import edu.workshop.todo.todo_console.repository.UsuarioRepository;
 import edu.workshop.todo.todo_console.service.TareaService;
 import edu.workshop.todo.todo_console.service.UsuarioService;
 import edu.workshop.todo.todo_console.mapper.*;
-import edu.workshop.todo.todo_console.dto.EstadisticaDTO;
+
 import org.springframework.transaction.annotation.Transactional;
 import edu.workshop.todo.todo_console.service.impl.*;
+import jakarta.faces.application.Resource;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -72,7 +72,35 @@ public class UsuarioServiceImpl implements UsuarioService {
                 .build();
     }
 
-    public TareaResponseDTO crearTarea(TareaRequestDTOO dto) {
-        return tareaService.crearTarea(dto);
+    public void eliminarUsuario(Long id) {
+        log.info("Deleting User with ID: {}", id);
+        if (!usuarioRepository.existsById(id)) {
+            throw ResourceNotFoundException.create("ID", id);
+        }
+        usuarioRepository.deleteById(id);
+        log.info("Usuer Deleted successfully: {}", id);
+    }
+
+    public UsuarioResponseDTO updateUsuario(Long id, UsuarioRequestDTO dto) {
+        log.info("Updating User with id: {}", id);
+        Usuarios usuario = usuarioRepository.findById(id).orElseThrow(() -> ResourceNotFoundException.create("ID", id));
+        usuario.setNombre(dto.getNombre());
+        usuario.setCorreoElectronico(dto.getCorreoElectronico());
+        usuario.setEstadistica(EstadisticaMapper.toEntity(dto.getEstadistica()));
+        usuario.setHistorial(HistorialMapper.toEntity(dto.getHistorial()));
+        usuario.setNotificaciones(NotificacionMapper.toEntityList(dto.getNotificaciones()));
+        usuario.setCalendario(CalendarioMapper.toEntity(dto.getCalendario()));
+        usuario.setGrupoDeListas(GrupoDeListaMapper.toEntityList(dto.getGrupoDelistas()));
+        usuario.setListaDeTareas(ListaDeTareaMapper.toEntityList(dto.getListaDeTareas()));
+
+        Usuarios savedUsuario = usuarioRepository.save(usuario);
+        return mapToDto(savedUsuario);
+    }
+
+    public UsuarioResponseDTO getUsuarioById(Long id) {
+        Usuarios usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> ResourceNotFoundException.create("User", id));
+
+        return mapToDto(usuario);
     }
 }
