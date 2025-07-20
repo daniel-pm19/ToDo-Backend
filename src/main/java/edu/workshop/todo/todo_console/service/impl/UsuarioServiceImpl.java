@@ -29,20 +29,14 @@ public class UsuarioServiceImpl implements UsuarioService {
     private final TareaService tareaService;
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public UsuarioResponseDTO crearUsuario(UsuarioRequestDTO dto) {
-        log.info("Creating a new user with ID: {}", dto.getId());
-
-        if (usuarioRepository.existsById(dto.getId())) {
-            throw DuplicateResourceException.create("User", "id", dto.getId());
-        }
-
-        if (usuarioRepository.findByEmail(dto.getCorreoElectronico()).isPresent()) {
+        log.info("Creating a new user with Name: {}", dto.getNombre());
+        if (usuarioRepository.findByCorreoElectronico(dto.getCorreoElectronico()).isPresent()) {
             throw DuplicateResourceException.create("User", "id", dto.getCorreoElectronico());
         }
 
         Usuarios usuario = Usuarios.builder()
-                .id(dto.getId())
                 .nombre(dto.getNombre())
                 .correoElectronico(dto.getCorreoElectronico())
                 .contraseña(dto.getContraseña())

@@ -28,16 +28,24 @@ public class UserController {
     }
 
     // USUARIOS
-
-    @PostMapping
+    @PostMapping("")
     public ResponseEntity<UsuarioResponseDTO> createUsuario(
             @Valid @RequestBody UsuarioRequestDTO dto) {
         UsuarioResponseDTO created = usuarioService.crearUsuario(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
-
     }
 
-    @GetMapping("/{id}")
+    @PutMapping("/usuarios/{id}")
+    public ResponseEntity<UsuarioResponseDTO> updateUsuario(
+            @Parameter(description = "Usuario to be updated", required = true) @PathVariable Long id,
+            @Valid @RequestBody UsuarioRequestDTO dto) {
+
+        UsuarioResponseDTO usuarioUpdated = usuarioService.updateUsuario(id, dto);
+
+        return ResponseEntity.ok(usuarioUpdated);
+    }
+
+    @GetMapping("/usuarios/{id}")
     public ResponseEntity<UsuarioResponseDTO> getUsuarioById(
             @Parameter(description = "Student ID to be deleted", required = true) @PathVariable Long id) {
         UsuarioResponseDTO usuario = usuarioService.getUsuarioById(id);
@@ -53,14 +61,14 @@ public class UserController {
 
     // TAREAS
 
-    @PostMapping
+    @PostMapping("/usuarios/tareas")
     public ResponseEntity<TareaResponseDTO> crearTarea(
             @Valid @RequestBody TareaRequestDTOO dto) {
         TareaResponseDTO created = tareaService.crearTarea(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
-    @PutMapping("/tareas/{id}")
+    @PutMapping("/usuarios/tareas/{id}")
     public ResponseEntity<TareaResponseDTO> updateTarea(
             @Parameter(description = "Tarea to be updated", required = true) @PathVariable Long id,
             @Valid @RequestBody TareaRequestDTOO dto) {
@@ -70,7 +78,7 @@ public class UserController {
         return ResponseEntity.ok(tareaUpdated);
     }
 
-    @DeleteMapping("/tareas/{id}")
+    @DeleteMapping("/usuarios/tareas/{id}")
     public ResponseEntity<Void> eliminarTarea(
             @Parameter(description = "Tarea ID to be deleted", required = true) @PathVariable Long id) {
 
@@ -79,7 +87,7 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/tareas/{id}")
+    @GetMapping("/usuarios/tareas/{id}")
     public ResponseEntity<TareaResponseDTO> getTareaById(
             @Parameter(description = "Student ID to be deleted", required = true) @PathVariable Long id) {
         TareaResponseDTO tarea = tareaService.getTareaById(id);

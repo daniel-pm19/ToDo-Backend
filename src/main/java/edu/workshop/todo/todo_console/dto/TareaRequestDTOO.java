@@ -23,7 +23,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public class TareaRequestDTOO {
 
     @Schema(description = "ID único de la tarea", example = "123")
-    @NotNull(message = "id no puede ser nulo")
     private Long id;
 
     @Schema(description = "Nombre de la tarea", example = "Hacer el informe")

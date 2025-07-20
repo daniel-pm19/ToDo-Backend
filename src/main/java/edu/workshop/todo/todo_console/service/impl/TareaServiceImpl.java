@@ -21,11 +21,11 @@ public class TareaServiceImpl implements TareaService {
     private final TareaRepository tareaRepository;
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public TareaResponseDTO crearTarea(TareaRequestDTOO dto) {
         log.info("Creating a new user with ID: {}", dto.getId());
 
-        if (tareaRepository.findByName(dto.getNombre()).isEmpty()) {
+        if (tareaRepository.findByNombre(dto.getNombre()).isEmpty()) {
             throw DuplicateResourceException.create("Tarea", "Nombre", dto.getNombre());
         }
         if (tareaRepository.findByPrioridad(dto.getPrioridad()).isEmpty()) {

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -23,7 +25,7 @@ import lombok.Setter;
 public class ListaDeTarea {
     @Id
     @Column
-    @NotBlank(message = "ID cannot be blank")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -33,6 +35,7 @@ public class ListaDeTarea {
 
     @Column
     @NotNull(message = "La fecha No puede ser nula")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Past
     private LocalDate fechaDeCreacion;
 

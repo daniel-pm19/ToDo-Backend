@@ -15,7 +15,7 @@ import java.util.*;
 @Repository
 public interface TareaRepository extends JpaRepository<Tarea, Long> {
 
-    List<Tarea> findByName(String nombre);
+    List<Tarea> findByNombre(String nombre);
 
     Optional<Tarea> findById(Long id);
 

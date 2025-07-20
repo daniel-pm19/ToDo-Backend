@@ -10,10 +10,14 @@ import edu.workshop.todo.todo_console.model.ListaDeTarea;
 import edu.workshop.todo.todo_console.model.Notificacion;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 @Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder

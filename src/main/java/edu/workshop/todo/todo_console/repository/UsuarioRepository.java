@@ -14,12 +14,12 @@ import java.util.*;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuarios, Long> {
 
-    Optional<Usuarios> findByEmail(String correoElectronico);
+    Optional<Usuarios> findByCorreoElectronico(String correoElectronico);
 
-    List<Usuarios> findByName(String nombre);
+    List<Usuarios> findByNombre(String nombre);
 
     Optional<Usuarios> findById(Long id);
 
-    List<Usuarios> findByListaDeTarea(ListaDeTarea listaDeTarea);
+    List<Usuarios> findByListaDeTareas(ListaDeTarea listaDeTarea);
 
 }
