@@ -17,7 +17,7 @@ import jakarta.validation.constraints.*;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "historial")
+@Table(name = "calendario")
 @Data
 @Getter
 @Setter
