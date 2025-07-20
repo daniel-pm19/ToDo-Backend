@@ -5,6 +5,9 @@ import edu.workshop.todo.todo_console.model.enums.TipoHistorial;
 import edu.workshop.todo.todo_console.service.*;
 import java.time.LocalDate;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.ArrayList;
 
 import jakarta.persistence.*;
@@ -25,11 +28,12 @@ import jakarta.validation.constraints.*;
 public class Historial {
     @Id
     @Column
-    @NotBlank(message = "ID cannot be blank")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
     @NotNull(message = "La fecha No puede ser nula")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Past
     private LocalDate fechaDeCreacion;
 
@@ -40,5 +44,4 @@ public class Historial {
     @Enumerated(EnumType.STRING)
     @Column
     private TipoHistorial tipoHistorial;
-
 }

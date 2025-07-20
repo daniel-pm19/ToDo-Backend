@@ -3,6 +3,8 @@ package edu.workshop.todo.todo_console.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -23,8 +25,8 @@ import jakarta.validation.constraints.*;
 public class GrupoDeLista {
 
     @Id
-    @NotBlank(message = "ID cannot be blank")
     @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
@@ -32,6 +34,7 @@ public class GrupoDeLista {
     private String nombre;
 
     @PastOrPresent
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column
     private LocalDate fechaDeCreacion;
 

@@ -2,6 +2,7 @@ package edu.workshop.todo.todo_console.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.Getter;
 import lombok.AllArgsConstructor;
@@ -20,13 +21,11 @@ import lombok.Setter;
 public class Estadistica {
     @Id
     @Column
-    @NotBlank
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    @NotBlank(message = "las tareas no pueden ser nulas")
     private int tareas;
 
     @Column
-    @NotBlank(message = "tareas finalizadas no pueden ser nulas")
     private int tareasFinalizadas;
 }

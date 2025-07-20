@@ -27,7 +27,7 @@ import jakarta.persistence.*;
 public class Calendario {
     @Id
     @Column
-    @NotBlank
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

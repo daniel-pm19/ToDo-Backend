@@ -1,9 +1,10 @@
 package edu.workshop.todo.todo_console.dto;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import edu.workshop.todo.todo_console.model.enums.Estado;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +20,6 @@ import lombok.Setter;
 @Builder
 public class SubTareaDTO {
 
-    @NotBlank(message = "id cannot be blank")
     private Long id;
 
     @NotBlank(message = "name cannot be blank")
@@ -29,6 +29,6 @@ public class SubTareaDTO {
     private Estado estado;
 
     @NotBlank(message = "fecha de creacion cannot be blank")
-    private LocalDateTime fechaDeCreacion;
+    private LocalDate fechaDeCreacion;
 
 }

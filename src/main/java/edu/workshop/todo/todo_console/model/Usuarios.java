@@ -25,7 +25,6 @@ import lombok.Builder;
 public class Usuarios {
     @Id
     @Column
-    @NotBlank(message = "USER ID cannot be blank")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -67,5 +66,4 @@ public class Usuarios {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true) // añadir fks
     @JoinColumn(name = "usuario_id") // se refiere a la clave forannea en la tabla de lista de tareas
     private List<ListaDeTarea> listaDeTareas;
-
 }
