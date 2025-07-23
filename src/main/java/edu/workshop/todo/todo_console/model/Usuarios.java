@@ -5,6 +5,9 @@ import edu.workshop.todo.todo_console.service.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -41,6 +44,7 @@ public class Usuarios {
 
     @Column(nullable = false)
     @NotBlank(message = "Contraseña no puede estar vacia")
+    @JsonProperty("contraseña")
     private String contraseña;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -51,7 +55,7 @@ public class Usuarios {
     @JoinColumn(name = "historial_id")
     private Historial historial;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id")
     private List<Notificacion> notificaciones;
 
@@ -59,11 +63,12 @@ public class Usuarios {
     @JoinColumn(name = "calendario_id")
     private Calendario calendario;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "usuario_id")
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<GrupoDeLista> grupoDeListas;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true) // añadir fks
-    @JoinColumn(name = "usuario_id") // se refiere a la clave forannea en la tabla de lista de tareas
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ListaDeTarea> listaDeTareas;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Tarea> tareas;
 }

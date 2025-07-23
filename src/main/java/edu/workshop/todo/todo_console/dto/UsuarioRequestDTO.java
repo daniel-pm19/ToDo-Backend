@@ -9,6 +9,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 
@@ -27,8 +30,10 @@ public class UsuarioRequestDTO extends BaseUsuarioDTO {
     private CalendarioDTO calendario;
     private List<GrupoDeListaDTO> grupoDelistas;
     private List<ListaDeTareaDTO> listaDeTareas;
+    private List<TareaRequestDTOO> tareas;
 
     @Schema(description = "Initial password for the user", example = "SecureP@ss123")
     @NotBlank(message = "password cannot be blank")
+    @JsonProperty("contraseña")
     private String contraseña;
 }

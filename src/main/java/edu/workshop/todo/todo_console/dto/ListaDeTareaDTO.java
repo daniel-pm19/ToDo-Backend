@@ -18,7 +18,11 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+
+// REQUEST
 public class ListaDeTareaDTO {
+
+    private Long id;
 
     @Schema(description = "Nombre de la lista de tareas", example = "Lista de compras")
     @NotBlank(message = "El nombre no puede estar en blanco")
@@ -31,4 +35,9 @@ public class ListaDeTareaDTO {
 
     @Schema(description = "Lista de tareas asociadas")
     private List<TareaRequestDTOO> tareas;
+
+    private Long usuario_id;
+
+    private Long grupoDeLista_id;
+
 }

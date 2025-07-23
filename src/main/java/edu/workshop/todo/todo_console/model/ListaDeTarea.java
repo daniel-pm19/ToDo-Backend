@@ -39,7 +39,14 @@ public class ListaDeTarea {
     @Past
     private LocalDate fechaDeCreacion;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "listadetareas_id")
+    @OneToMany(mappedBy = "listaDeTarea", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Tarea> tareas;
+
+    @ManyToOne
+    @JoinColumn(name = "usuarios_id")
+    private Usuarios usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "grupoDeLista_id")
+    private GrupoDeLista grupoDeLista;
 }

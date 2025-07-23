@@ -2,6 +2,7 @@ package edu.workshop.todo.todo_console.model;
 
 import edu.workshop.todo.todo_console.model.enums.Prioridad;
 import edu.workshop.todo.todo_console.model.enums.Estado;
+import edu.workshop.todo.todo_console.model.*;
 import edu.workshop.todo.todo_console.service.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -63,11 +64,19 @@ public class Tarea {
     @Enumerated(EnumType.STRING)
     private Prioridad prioridad;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "tarea_id")
+    @OneToMany(mappedBy = "tarea", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SubTarea> subtareas;
 
     @JoinColumn(name = "tarea_id")
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Notificacion> notificaciones;
+
+    @ManyToOne
+    @JoinColumn(name = "usuarios_id")
+    private Usuarios usuario;
+
+    @ManyToOne // esto?
+    @JoinColumn(name = "listaDeTarea_id")
+    private ListaDeTarea listaDeTarea;
+
 }

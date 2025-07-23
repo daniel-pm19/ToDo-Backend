@@ -19,16 +19,13 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-public class TareaResponseDTO {
+public class ListaDeTareaResponseDTO {
+
     private Long id;
     private String nombre;
-    private String descripcion;
     private LocalDate fechaDeCreacion;
-    private LocalDate fechaLimite;
-    private Estado estado;
-    private Prioridad prioridad;
-    private List<SubTareaDTO> subtareas;
-    private List<NotificacionDTO> notificaciones;
+    private List<TareaRequestDTOO> tareas;
     private Long usuario_id;
-    private Long listaDeTarea_id;
+    private Long grupoDeLista_id;
+
 }

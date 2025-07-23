@@ -14,4 +14,7 @@ public interface UsuarioService {
 
     UsuarioResponseDTO getUsuarioById(Long id);
 
+    List<UsuarioResponseDTO> getAllUsuarios();
+
+    UsuarioResponseDTO getUsuarioByEmail(String email);
 }

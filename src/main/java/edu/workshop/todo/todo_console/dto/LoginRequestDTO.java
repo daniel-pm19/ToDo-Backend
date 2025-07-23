@@ -1,14 +1,11 @@
 package edu.workshop.todo.todo_console.dto;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import lombok.*;
 
 @Data
 @Getter
@@ -16,8 +13,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-public class BaseUsuarioDTO {
-    @NotBlank
-    private String nombre;
+public class LoginRequestDTO {
     private String correoElectronico;
+    private String contraseña;
 }

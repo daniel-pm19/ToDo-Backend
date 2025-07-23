@@ -10,4 +10,5 @@ public interface TareaService {
     TareaResponseDTO updateTarea(Long id, TareaRequestDTOO dto);
 
     TareaResponseDTO getTareaById(Long id);
+
 }

@@ -11,6 +11,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @Data
 @Getter
@@ -18,6 +19,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+
+// SUBTAREA REQUEST
 public class SubTareaDTO {
 
     private Long id;
@@ -30,5 +33,8 @@ public class SubTareaDTO {
 
     @NotBlank(message = "fecha de creacion cannot be blank")
     private LocalDate fechaDeCreacion;
+
+    @Schema(description = "Id de la tarea")
+    private Long tarea_id;
 
 }

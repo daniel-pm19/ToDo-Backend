@@ -1,26 +1,28 @@
 package edu.workshop.todo.todo_console.dto;
 
-import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.*;
+import java.time.LocalDate;
+import java.util.List;
+
+import edu.workshop.todo.todo_console.model.enums.Estado;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.LocalDate;
-import java.util.List;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @Data
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-
-// REQUEST------------------
-public class GrupoDeListaDTO {
+public class GrupoDeListaResponseDTO {
 
     private Long id;
 
@@ -34,9 +36,8 @@ public class GrupoDeListaDTO {
     @PastOrPresent(message = "La fecha no puede ser futura")
     private LocalDate fechaDeCreacion;
 
-    @Schema(description = "Listas de tareas asociadas a este grupo")
     private List<ListaDeTareaDTO> listaDeTareas;
 
-    @Schema(description = "Usuario del id")
+    @Schema(description = "id del Usuario")
     private Long usuario_id;
 }

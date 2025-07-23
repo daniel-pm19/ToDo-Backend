@@ -31,4 +31,5 @@ public class UsuarioResponseDTO {
     private CalendarioDTO calendario;
     private List<GrupoDeListaDTO> grupoDeListas;
     private List<ListaDeTareaDTO> listaDeTareas;
+    private List<TareaRequestDTOO> tareas;
 }

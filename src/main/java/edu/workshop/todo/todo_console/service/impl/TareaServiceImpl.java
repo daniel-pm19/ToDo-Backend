@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import edu.workshop.todo.todo_console.dto.*;
 import edu.workshop.todo.todo_console.model.Notificacion;
 import edu.workshop.todo.todo_console.model.Tarea;
+import edu.workshop.todo.todo_console.model.Usuarios;
 import edu.workshop.todo.todo_console.repository.TareaRepository;
 import edu.workshop.todo.todo_console.service.TareaService;
 import edu.workshop.todo.todo_console.mapper.*;
@@ -25,13 +26,13 @@ public class TareaServiceImpl implements TareaService {
     public TareaResponseDTO crearTarea(TareaRequestDTOO dto) {
         log.info("Creating a new user with ID: {}", dto.getId());
 
-        if (tareaRepository.findByNombre(dto.getNombre()).isEmpty()) {
+        if (!tareaRepository.findByNombre(dto.getNombre()).isEmpty()) {
             throw DuplicateResourceException.create("Tarea", "Nombre", dto.getNombre());
         }
-        if (tareaRepository.findByPrioridad(dto.getPrioridad()).isEmpty()) {
+        if (!tareaRepository.findByPrioridad(dto.getPrioridad()).isEmpty()) {
             throw DuplicateResourceException.create("Tarea", "Prioridad", dto.getPrioridad());
         }
-        if (tareaRepository.findByEstado(dto.getEstado()).isEmpty()) {
+        if (!tareaRepository.findByEstado(dto.getEstado()).isEmpty()) {
             throw DuplicateResourceException.create("Tarea", "Estado", dto.getEstado());
         }
 
@@ -46,7 +47,9 @@ public class TareaServiceImpl implements TareaService {
                 .subtareas(SubTareaMapper.toEntityList(dto.getSubtareas()))
                 .notificaciones(NotificacionMapper.toEntityList(dto.getNotificaciones()))
                 .build();
-
+        Usuarios usuario = new Usuarios();
+        usuario.setId(dto.getUsuario_id());
+        tarea.setUsuario(usuario);
         Tarea savedTareas = tareaRepository.save(tarea);
         return mapToDto(savedTareas);
     }
@@ -78,7 +81,9 @@ public class TareaServiceImpl implements TareaService {
         tarea.setPrioridad(dto.getPrioridad());
         tarea.setSubtareas(SubTareaMapper.toEntityList(dto.getSubtareas()));
         tarea.setNotificaciones(NotificacionMapper.toEntityList(dto.getNotificaciones()));
-
+        Usuarios usuario = new Usuarios();
+        usuario.setId(dto.getUsuario_id());
+        tarea.setUsuario(usuario);
         Tarea savedTarea = tareaRepository.save(tarea);
         return mapToDto(savedTarea);
     }
@@ -92,6 +97,7 @@ public class TareaServiceImpl implements TareaService {
                 .fechaLimite(tarea.getFechaLimite())
                 .estado(tarea.getEstado())
                 .prioridad(tarea.getPrioridad())
+                .usuario_id(tarea.getUsuario().getId())
                 .build();
     }
 
