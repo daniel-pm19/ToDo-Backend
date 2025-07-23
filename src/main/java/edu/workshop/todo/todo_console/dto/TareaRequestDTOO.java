@@ -50,4 +50,10 @@ public class TareaRequestDTOO {
     @Schema(description = "Lista de notificaciones configuradas")
     private List<NotificacionDTO> notificaciones;
 
+    @Schema(description = "Usuario del id")
+    private Long usuario_id;
+
+    @Schema(description = "Id de la lista de tarea")
+    private Long listaDeTarea_id;
+
 }

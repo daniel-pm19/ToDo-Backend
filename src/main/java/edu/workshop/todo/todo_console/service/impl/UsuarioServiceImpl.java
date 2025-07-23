@@ -63,6 +63,7 @@ public class UsuarioServiceImpl implements UsuarioService {
                 .calendario(CalendarioMapper.toDTO(usuario.getCalendario()))
                 .grupoDeListas(GrupoDeListaMapper.toDTOList(usuario.getGrupoDeListas()))
                 .listaDeTareas(ListaDeTareaMapper.toDTOList(usuario.getListaDeTareas()))
+                .tareas(TareaMapper.toDTOList(usuario.getTareas()))
                 .build();
     }
 
@@ -96,5 +97,21 @@ public class UsuarioServiceImpl implements UsuarioService {
                 .orElseThrow(() -> ResourceNotFoundException.create("User", id));
 
         return mapToDto(usuario);
+    }
+
+    public UsuarioResponseDTO getUsuarioByEmail(String email) {
+        log.info("Retrieving user with email: {}", email);
+
+        Usuarios usuario = usuarioRepository.findByCorreoElectronico(email)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with email: " + email));
+
+        return mapToDto(usuario);
+    }
+
+    public List<UsuarioResponseDTO> getAllUsuarios() {
+        List<Usuarios> usuarios = usuarioRepository.findAll();
+        return usuarios.stream()
+                .map(this::mapToDto)
+                .toList();
     }
 }

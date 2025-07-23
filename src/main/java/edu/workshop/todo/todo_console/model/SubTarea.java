@@ -44,4 +44,8 @@ public class SubTarea {
     @PastOrPresent
     private LocalDate fechaDeCreacion;
 
+    @ManyToOne
+    @JoinColumn(name = "tarea_id")
+    private Tarea tarea;
+
 }

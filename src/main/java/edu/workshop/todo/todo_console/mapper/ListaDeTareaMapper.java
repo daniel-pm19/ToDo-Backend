@@ -4,17 +4,22 @@ import java.util.stream.Collectors;
 import java.util.List;
 import edu.workshop.todo.todo_console.dto.ListaDeTareaDTO;
 import edu.workshop.todo.todo_console.model.ListaDeTarea;
+import edu.workshop.todo.todo_console.model.Usuarios;
 
 public class ListaDeTareaMapper {
 
     public static ListaDeTarea toEntity(ListaDeTareaDTO dto) {
-        return ListaDeTarea.builder()
+        ListaDeTarea listaDeTarea = ListaDeTarea.builder()
                 .nombre(dto.getNombre())
                 .fechaDeCreacion(dto.getFechaDeCreacion())
                 .tareas(dto.getTareas().stream()
                         .map(TareaMapper::toEntity)
                         .collect(Collectors.toList()))
                 .build();
+        Usuarios usuario = new Usuarios();
+        usuario.setId(dto.getUsuario_id());
+        listaDeTarea.setUsuario(usuario);
+        return listaDeTarea;
     }
 
     public static List<ListaDeTarea> toEntityList(List<ListaDeTareaDTO> dtoList) {
@@ -32,6 +37,7 @@ public class ListaDeTareaMapper {
                 .tareas(entity.getTareas().stream()
                         .map(TareaMapper::toDTO)
                         .collect(Collectors.toList()))
+                .usuario_id(entity.getUsuario().getId())
                 .build();
     }
 

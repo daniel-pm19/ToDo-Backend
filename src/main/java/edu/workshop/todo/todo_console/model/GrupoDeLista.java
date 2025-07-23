@@ -38,8 +38,11 @@ public class GrupoDeLista {
     @Column
     private LocalDate fechaDeCreacion;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "grupodelistas_id")
+    @OneToMany(mappedBy = "grupoDeLista", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ListaDeTarea> listasDeTareas;
+
+    @ManyToOne
+    @JoinColumn(name = "usuarios_id")
+    private Usuarios usuario;
 
 }
