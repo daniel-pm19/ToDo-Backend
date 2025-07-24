@@ -39,7 +39,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuarios usuario = Usuarios.builder()
                 .nombre(dto.getNombre())
                 .correoElectronico(dto.getCorreoElectronico())
-                .contraseña(dto.getContraseña())
+                .contrasena(dto.getContrasena())
                 .estadistica(EstadisticaMapper.toEntity(dto.getEstadistica()))
                 .historial(HistorialMapper.toEntity(dto.getHistorial()))
                 .notificaciones(NotificacionMapper.toEntityList(dto.getNotificaciones()))

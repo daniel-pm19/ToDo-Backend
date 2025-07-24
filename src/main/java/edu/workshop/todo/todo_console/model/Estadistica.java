@@ -24,8 +24,8 @@ public class Estadistica {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    private int tareas;
+    private int tareas = 0;
 
     @Column
-    private int tareasFinalizadas;
+    private int tareasFinalizadas = 0;
 }

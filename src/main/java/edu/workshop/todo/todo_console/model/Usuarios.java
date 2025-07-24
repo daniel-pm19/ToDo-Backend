@@ -44,8 +44,7 @@ public class Usuarios {
 
     @Column(nullable = false)
     @NotBlank(message = "Contraseña no puede estar vacia")
-    @JsonProperty("contraseña")
-    private String contraseña;
+    private String contrasena;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "estadistica_id")

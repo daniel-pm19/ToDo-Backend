@@ -1,5 +1,7 @@
 package edu.workshop.todo.todo_console.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -15,5 +17,5 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class LoginRequestDTO {
     private String correoElectronico;
-    private String contraseña;
+    private String contrasena;
 }

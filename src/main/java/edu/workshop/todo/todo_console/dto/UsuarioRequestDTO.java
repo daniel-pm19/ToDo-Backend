@@ -34,6 +34,5 @@ public class UsuarioRequestDTO extends BaseUsuarioDTO {
 
     @Schema(description = "Initial password for the user", example = "SecureP@ss123")
     @NotBlank(message = "password cannot be blank")
-    @JsonProperty("contraseña")
-    private String contraseña;
+    private String contrasena;
 }

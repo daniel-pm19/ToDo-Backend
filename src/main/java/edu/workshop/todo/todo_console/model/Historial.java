@@ -34,7 +34,7 @@ public class Historial {
     @Column
     @NotNull(message = "La fecha No puede ser nula")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    @Past
+    @PastOrPresent
     private LocalDate fechaDeCreacion;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

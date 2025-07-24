@@ -3,9 +3,12 @@ package edu.workshop.todo.todo_console.controller;
 import edu.workshop.todo.todo_console.dto.AuthResponseDTO;
 import edu.workshop.todo.todo_console.dto.LoginRequestDTO;
 import edu.workshop.todo.todo_console.dto.RegisterRequestDTO;
+import edu.workshop.todo.todo_console.dto.UsuarioResponseDTO;
 import edu.workshop.todo.todo_console.service.AuthService;
+import edu.workshop.todo.todo_console.model.Usuarios;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,18 +28,19 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @PostMapping("/validate/login") // No se si asi sea la ruta
+    @PostMapping("/validate/login") 
     public ResponseEntity<AuthResponseDTO> validateLoginCredentials(
             @Valid @RequestBody LoginRequestDTO credentials) {
         AuthResponseDTO response = authService.login(credentials);
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/validate/register") // No se si asi sea la ruta
+    @PostMapping("/validate/register") 
     public ResponseEntity<AuthResponseDTO> validateRegisterCredentials(
             @Valid @RequestBody RegisterRequestDTO credentials) {
         AuthResponseDTO response = authService.register(credentials);
         return ResponseEntity.ok(response);
     }
+
 
 }
